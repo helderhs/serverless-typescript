@@ -1,0 +1,32 @@
+app: serverless-youtube
+service: serverless-youtube
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+
+functions:
+  create-user:
+    handler: src/create-user.handler
+    events:
+      - httpApi:
+          path: /users
+          method: post
+  list-user:
+    handler: src/list-user.handler
+    events:
+      - httpApi:
+          path: /users
+          method: get
+  conTeste:
+    handler: src/cronTeste.handler
+    events:
+      - schedule:
+          rate: rate(1 minute) # ou cron(0/5 * * * ? *)
+          description: "Executa a cada 1 minutos"
+          enabled: true
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
