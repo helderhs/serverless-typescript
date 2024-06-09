@@ -3,3 +3,5 @@ node_modules
 .env
 ANOTACOES.TXT
 .build
+.serverless
+.idea
